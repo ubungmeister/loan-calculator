@@ -1,67 +1,77 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
 import {FcHome} from 'react-icons/fc'
+import {handleMortgageDataChange, mortgageCalculation} from "./utils";
+import {PaymentTable} from "./PaymentTable";
 
 export const Calculator = () => {
-    const [amount, setStateAmount] = useState<number>(0)
+    const [amountBorrow, setStateAmount] = useState<number>(0)
     const [interest, setStateMortgage] = useState<number>(0)
-    const [year, setStateMonth] = useState<number>(0)
-    const [result,setResult] = useState(0)
-    const[error,setError]=useState<string|null>(null)
-    useEffect(()=>{ CalculatorHandler()},[amount,interest,year])
+    const [yearPay, setStateMonth] = useState<number>(0)
+    const [monthlyRate, setMonthlyRate] = useState<number>(0)
 
-    const onAmountChangeHandler =(event:ChangeEvent<HTMLInputElement>)=>{
+
+    const onAmountChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
         setStateAmount(+event.currentTarget.value)
+
     }
-    const onMortgageRateHandler =(event:ChangeEvent<HTMLInputElement>)=>{
+    const onMortgageRateHandler = (event: ChangeEvent<HTMLInputElement>) => {
         setStateMortgage(+event.currentTarget.value)
     }
-    const onYearsChangeHandler =(event:ChangeEvent<HTMLInputElement>)=>{
+    const onYearsChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
         setStateMonth(+event.currentTarget.value)
     }
-    const CalculatorHandler =()=>{
-       let inputAmount = Number(amount)
-        let inputInterest = Number(interest)
-        let inputYear = Number(year)
-        const rate = inputAmount * (inputInterest/12/100)/(1-(1+(inputInterest/12/100))**-(inputYear*12))
-        setResult(+rate.toFixed(2))
+    //  const CalculatorHandler = () => {
+    //     const monthlyRate = amountBorrow * (interest / 12 / 100) / (1 - (1 + (interest / 12 / 100)) ** -(yearPay * 12))
+    //      setMonthlyRate(+monthlyRate.toFixed(2))
+    //     return (+monthlyRate.toFixed(2))
+    // }
+    const calculatorHandler =()=>{
+        return +mortgageCalculation(amountBorrow,interest,yearPay).toFixed(2)
+        setMonthlyRate(+mortgageCalculation)
     }
+    const monthlyPayments =()=>{
+        return handleMortgageDataChange(amountBorrow,interest,yearPay,monthlyRate)
+    }
+
 
 
     return (
         <div className='calculator'>
             <div className={'form'}>
-            <h4>
-            <FcHome /> Loan calculator
-            </h4>
+                <h4>
+                    <FcHome/> Loan calculator
+                </h4>
                 <div className={'form-items'}>
                     <div>
-                    <label id='label'>Amount:</label>
-            <input value={amount >= 0? amount : 0} type={"number"}
-                onChange={onAmountChangeHandler}
-                   className={'input'}
-            />
+                        <label id='label'>Amount:</label>
+                        <input value={Math.max(0, amountBorrow)} type={"number"}
+                               onChange={onAmountChangeHandler}
+                               className={'input'}
+                        />
                     </div>
                     <div>
                         <label id='label'>Interest:</label>
-                        <input value={interest >= 0? interest : 0} type={"number"}
+                        <input value={Math.max(0, interest)} type={"number"}
                                onChange={onMortgageRateHandler}
                         />
                     </div>
                     <div>
                         <label id='label'>Years:</label>
-            <input value={year >= 0? year : 0} type={"number"}
-                onChange={onYearsChangeHandler}
-            />
+                        <input value={Math.max(0, yearPay)} type={"number"}
+                               onChange={onYearsChangeHandler}
+                        />
                     </div>
-                <div>
-                    <label id='label'>Monthly Payment:</label>
-                    <input type={'text'}
-                           disabled={true}
-                    value={isFinite(result)? result : ''}/>
-                </div>
+                    <div>
+                        <label id='label'>Monthly Payment:</label>
+                        <input type={'text'}
+                               disabled={true}
+                               value={isFinite(calculatorHandler()) ? calculatorHandler() : ''}/>
+                    </div>
+
                 </div>
 
-        </div>
+            </div>
+            <PaymentTable amountBorrow={amountBorrow} monthlyPayments={monthlyPayments}/>
         </div>
     );
 };
