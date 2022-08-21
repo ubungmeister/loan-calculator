@@ -1,67 +1,68 @@
-body {
-  background-color: white;
+h1 {
+  text-align: center;
 }
-input {
+.grid__container {
+  display: grid;
+  grid-template-columns: 70%30%;
+}
+.grid__item {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.grid__item--header {
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+.grid__item--range-slider {
+  margin-bottom: 10px;
+}
+.grid__item--label {
+  font-style: italic;
+  font-size: .8em;
+}
+.paymentsCalculatorTable {
+  width: 90%;
+  margin: auto;
+}
+.paymentsCalculatorTable thead th {
+  text-align: center;
+  position: sticky ;
+  top: 0;
+  background: white;
+}
+.paymentsCalculatorTable td, .paymentsCalculatorTable th {
+  padding: 15px 5px;
+}
+.paymentsCalculatorTable tr:nth-of-type(even) {
+  background-color: rgba(0,0,0,.05);
+}
+.paymentsCalculatorTable td {
+  width: 25%;
+  text-align: center;
+}
+.to-date-yearly-payment {
+  display: none;
+}
+@media (min-width: 575px) {
+  .to-date-yearly-payment {
+    display: table-cell;
+  }
+  .paymentsCalculatorTable td {
+    width: 16.6666666667%;
+  }
+}
+.graph-container {
+  width: 100%;
+  max-width: 800px;
   display: block;
-  width: 95%;
-  margin: 3px 0;
-  border-radius: 4px;
-  border-color: lightskyblue;
+  margin: auto;
 }
-
-p {
-  color: red;
-  font-size: 10px;
-  text-align: left;
-}
-
-h4 {
-  color: #555;
-}
-
-.calculator {
-  display: flex;
-  justify-content: center;
-  border-radius: 25px;
-  border: 2px solid lightskyblue;
-  padding-bottom: 20px;
-  width: 400px;
-  height: 400px;
-  margin-top: 100px;
-  margin-left: 400px;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: white;
-  width: 50%;
-  border-radius: 4px;
-  margin-top: 30px;
-}
-
-.form-items {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 3px;
-}
-
-.button {
-  background-color: black;
-  color: white;
-  border: none;
-  margin: 10px 0;
-  padding: 5px 10px;
-  cursor: pointer;
-}
-
-.button:hover {
-  opacity: 0.8;
-}
-
-#label {
-  font-size: 12px;
-  text-align: left;
+@media(min-width: 800px) {
+  .graph-container {
+    width: 50%;
+    display: inline-block;
+  }
 }
