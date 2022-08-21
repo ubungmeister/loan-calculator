@@ -132,6 +132,7 @@ export type PropsType = {
 }
 
 export const PaymentGraph =(props:PropsType)=> {
+    let graph = props.yearPayments.slice(2)
     graphData.labels = [];
     graphData.datasets[0].data = [];
     graphData.datasets[1].data = [];

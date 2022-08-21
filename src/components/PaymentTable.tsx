@@ -1,4 +1,5 @@
 import React from 'react';
+import {handleMortgageDataChange} from "./utils";
 const localeOptions = {
     style:'currency',
     currency:'CZK',
@@ -6,20 +7,9 @@ const localeOptions = {
     maximumFractionDigits: 2
 }
 
-export type PaymentTableType = {
-    month: number
-        outstandingBalance: number
-        interestPaid: number
-        interestPaidToDate: number
-        principalRepaid: number
-        principalRepaidToDate :number
-    }
 
-export type PropsType = {
-    monthlyPayments: PaymentTableType[]
-}
-
-export const PaymentTable = (props:PropsType) => {
+type DataCalculateMortgage = ReturnType<typeof handleMortgageDataChange>
+export const PaymentTable = (props: { monthlyPayments: DataCalculateMortgage }) => {
     return(
         <table className="paymentsCalculatorTable">
             <thead>
@@ -35,7 +25,7 @@ export const PaymentTable = (props:PropsType) => {
             <tbody>
             {props.monthlyPayments.map((el)=>(
                 <tr key={el.month}>
-                    <td>{el.month}</td>
+                    <td> €{el.month}</td>
                     <td>{el.interestPaid.toLocaleString('en-GB', localeOptions)}</td>
                     <td>{el.interestPaidToDate.toLocaleString('en-GB', localeOptions)}</td>
                     <td>{el.principalRepaid.toLocaleString('en-GB', localeOptions)}</td>

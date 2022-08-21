@@ -1,6 +1,4 @@
 import React from 'react';
-import {FcHome} from "react-icons/fc";
-import {PaymentTable} from "./PaymentTable";
 
 export type PropsType = {
     showAmountBorrow:number
