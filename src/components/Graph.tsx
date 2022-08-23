@@ -1,24 +1,25 @@
 import React from 'react';
-import {CartesianGrid, Label, Legend, Line, LineChart, Tooltip, XAxis, YAxis} from "recharts";
-import {handleMortgageDataChange} from "./utils";
+import {CartesianGrid, Legend, Line, LineChart, Tooltip, XAxis, YAxis} from "recharts";
+import {handleLoanDataChange} from "./utils";
 
 const formatDecimals = (item: number) => {
     return Number(item.toFixed(2))}
 
-type DataCalculateMortgage = ReturnType<typeof handleMortgageDataChange>
-export const Graph = (props: { calculatedMortgage: DataCalculateMortgage }) => {
+type DataCalculateLoan = ReturnType<typeof handleLoanDataChange>
+export const Graph = (props: { calculatedMortgage: DataCalculateLoan }) => {
         const chartData = props.calculatedMortgage.filter(el=>el.month).map((el, index) => ({
             xAxis: {index},
             interestPaid: formatDecimals(el.interestPaid),
             principalPaid: formatDecimals(el.principalRepaid),
             remain: formatDecimals(el.outstandingBalance),
+            outstandingBalanceInflation:formatDecimals(el.outstandingBalanceInflation),
+            inflationByMonth:formatDecimals(el.inflationByMonth)
         }))
 
         return (
-        <div>
-                <div>
+        <div className='Div_GridContainer' >
+                <div className='graphContainer' >
                     <LineChart
-
                         width={600}
                         height={300}
                         data={chartData}
@@ -30,7 +31,7 @@ export const Graph = (props: { calculatedMortgage: DataCalculateMortgage }) => {
                         }}
                     >
                         <CartesianGrid stroke='#eee' strokeDasharray='3 3' />
-                        <XAxis dataKey='xAxis' interval={10}/>
+                        <XAxis dataKey='index' interval={10}/>
                         <YAxis/>
                         <Tooltip />
                         <Legend
@@ -40,10 +41,19 @@ export const Graph = (props: { calculatedMortgage: DataCalculateMortgage }) => {
                             dataKey='remain'
                             fill="#82ca9d"
                             stroke="#82ca9d"
-                            name='Remain to pay by Year'
+                            name='Remain to pay by Month'
+
+                        />
+                        <Line
+                            type='monotone'
+                            dataKey='outstandingBalanceInflation'
+                            stroke='red'
+                            name='Inflation'
 
                         />
                     </LineChart>
+                </div >
+                    <div className='graphContainer'>
                     <LineChart
                         width={600}
                         height={300}
@@ -67,7 +77,7 @@ export const Graph = (props: { calculatedMortgage: DataCalculateMortgage }) => {
                             strokeWidth={1}
                             fill="#82ca9d"
                             stroke="#82ca9d"
-                            name='Interest paid by Year'
+                            name='Interest paid by Month'
 
                         />
                         <Line
@@ -77,12 +87,23 @@ export const Graph = (props: { calculatedMortgage: DataCalculateMortgage }) => {
                             activeDot={{ r: 8 }}
                             fill="#8884d8"
                             stroke="#8884d8"
-                            name='Principal paid by Year'
+                            name='Principal paid by Month'
+
+                        />
+                        <Line
+                            type='monotone'
+                            dataKey='inflationByMonth'
+                            strokeWidth={1}
+                            activeDot={{ r: 8 }}
+                            fill="#8884d8"
+                            stroke='red'
+                            name='Inflation by Month'
 
                         />
                     </LineChart>
+                    </div>
                 </div>
-        </div>
+
     );
 };
 

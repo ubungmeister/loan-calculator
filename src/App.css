@@ -1,50 +1,81 @@
 h1 {
   text-align: center;
+  font-family: 'Georgia';
+
 }
-.grid__container {
+.Div_Global{
+  margin-top: 15px;
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+  overflow: scroll;
+  font-family: 'Arial';
+
+}
+.Div_GridContainer{
   display: grid;
-  grid-template-columns: 70%30%;
+  grid-template-columns: 50% 50%;
+  padding-bottom: 2rem;
+  padding-top: 2rem;
+
 }
-.grid__item {
+.Div_GridItem{
   padding: 30px;
   display: flex;
   flex-direction: column;
   text-align: center;
 }
-.grid__item--header {
+.Div_GridItem2{
+  padding: 40px;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  border: 3px solid;
+  margin: auto;
+  border-radius: 20px;
+  border-color: #82ca9d;
+  width: 200px;
+  height: 100px;
+}
+
+.Span_GridItemHeader{
   font-weight: bold;
   font-size: 1.2em;
   margin-bottom: 10px;
 }
-.grid__item--range-slider {
-  margin-bottom: 10px;
+.Input_GridItemRangeSlider{
+  margin-bottom: 20px;
+
 }
-.grid__item--label {
-  font-style: italic;
-  font-size: .8em;
+.Label_GridItemLabel{
+  font-size: 14px;
+}
+.graphContainer {
+  width: 100%;
+  max-width: 600px;
+  margin: 10px;
+
 }
 .paymentsCalculatorTable {
-  width: 90%;
-  margin: auto;
-}
-.paymentsCalculatorTable thead th {
-  text-align: center;
-  position: sticky ;
-  top: 0;
-  background: white;
-}
-.paymentsCalculatorTable td, .paymentsCalculatorTable th {
-  padding: 15px 5px;
-}
-.paymentsCalculatorTable tr:nth-of-type(even) {
-  background-color: rgba(0,0,0,.05);
+  width: 100%;
+
 }
 .paymentsCalculatorTable td {
   width: 25%;
   text-align: center;
 }
-.to-date-yearly-payment {
-  display: none;
+.paymentsCalculatorTable thead th {
+  position: sticky;
+  top: 0;
+  background: white;
+}
+
+.paymentsCalculatorTable td, .paymentsCalculatorTable th {
+  padding: 20px 5px;
+}
+.paymentsCalculatorTable tr:nth-of-type(even) {
+  background-color: rgba(0,0,0,.05);
 }
 @media (min-width: 575px) {
   .to-date-yearly-payment {
@@ -52,17 +83,5 @@ h1 {
   }
   .paymentsCalculatorTable td {
     width: 16.6666666667%;
-  }
-}
-.graph-container {
-  width: 100%;
-  max-width: 800px;
-  display: block;
-  margin: auto;
-}
-@media(min-width: 800px) {
-  .graph-container {
-    width: 50%;
-    display: inline-block;
   }
 }
