@@ -1,12 +1,12 @@
 import React from 'react';
-import {CartesianGrid, Label, Legend, Line, LineChart, Tooltip, XAxis, YAxis} from "recharts";
-import {handleMortgageDataChange} from "./utils";
+import {CartesianGrid, Legend, Line, LineChart, Tooltip, XAxis, YAxis} from "recharts";
+import {handleLoanDataChange} from "./utils";
 
 const formatDecimals = (item: number) => {
     return Number(item.toFixed(2))}
 
-type DataCalculateMortgage = ReturnType<typeof handleMortgageDataChange>
-export const Graph = (props: { calculatedMortgage: DataCalculateMortgage }) => {
+type DataCalculateLoan = ReturnType<typeof handleLoanDataChange>
+export const Graph = (props: { calculatedMortgage: DataCalculateLoan }) => {
         const chartData = props.calculatedMortgage.filter(el=>el.month).map((el, index) => ({
             xAxis: {index},
             interestPaid: formatDecimals(el.interestPaid),
@@ -15,10 +15,9 @@ export const Graph = (props: { calculatedMortgage: DataCalculateMortgage }) => {
         }))
 
         return (
-        <div>
-                <div>
+        <div className='Div_GridContainer' >
+                <div className='graphContainer' >
                     <LineChart
-
                         width={600}
                         height={300}
                         data={chartData}
@@ -44,6 +43,8 @@ export const Graph = (props: { calculatedMortgage: DataCalculateMortgage }) => {
 
                         />
                     </LineChart>
+                </div >
+                    <div className='graphContainer'>
                     <LineChart
                         width={600}
                         height={300}
@@ -81,8 +82,9 @@ export const Graph = (props: { calculatedMortgage: DataCalculateMortgage }) => {
 
                         />
                     </LineChart>
+                    </div>
                 </div>
-        </div>
+
     );
 };
 

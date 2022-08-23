@@ -1,36 +1,30 @@
 import React from 'react';
-import {handleMortgageDataChange} from "./utils";
-const localeOptions = {
-    style:'currency',
-    currency:'CZK',
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2
-}
+import {handleLoanDataChange} from "./utils";
+import {formatCurrency} from "./CalculatorInput";
 
-
-type DataCalculateMortgage = ReturnType<typeof handleMortgageDataChange>
-export const PaymentTable = (props: { monthlyPayments: DataCalculateMortgage }) => {
+type DataCalculateLoan = ReturnType<typeof handleLoanDataChange>
+export const PaymentTable = (props: { monthlyPayments: DataCalculateLoan }) => {
     return(
         <table className="paymentsCalculatorTable">
             <thead>
             <tr>
                 <th>Year</th>
                 <th>Month Interest Paid</th>
-                <th className="to-date-yearly-payment">Total Interest Paid</th>
-                <th>Month Principal Repaid</th>
-                <th className="to-date-yearly-payment">Total Principal Repaid</th>
-                <th>Mortgage Balance</th>
+                <th className="toDateYearlyPayment">Total Interest Paid</th>
+                <th>Month Principal Paid</th>
+                <th className="toDateYearlyPayment">Total Principal Repaid</th>
+                <th>Loan Balance</th>
             </tr>
             </thead>
             <tbody>
             {props.monthlyPayments.map((el)=>(
                 <tr key={el.month}>
-                    <td> €{el.month}</td>
-                    <td>{el.interestPaid.toLocaleString('en-GB', localeOptions)}</td>
-                    <td>{el.interestPaidToDate.toLocaleString('en-GB', localeOptions)}</td>
-                    <td>{el.principalRepaid.toLocaleString('en-GB', localeOptions)}</td>
-                    <td>{el.principalRepaidToDate.toLocaleString('en-GB', localeOptions)}</td>
-                    <td>{el.outstandingBalance.toLocaleString('en-GB', localeOptions)}</td>
+                    <td> {el.month}</td>
+                    <td>{formatCurrency(el.interestPaid)}</td>
+                    <td>{formatCurrency(el.interestPaidToDate)}</td>
+                    <td>{formatCurrency(el.principalRepaid)}</td>
+                    <td>{formatCurrency(el.principalRepaidToDate)}</td>
+                    <td>{formatCurrency(el.outstandingBalance)}</td>
                 </tr>
             ))}
 

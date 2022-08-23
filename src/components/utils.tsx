@@ -1,9 +1,4 @@
-export const mortgageCalculation = (amount: number, interest: number, year: number) => {
-    return (amount * (interest / 12 / 100)) / (1 - (1 + interest / 12 / 100) ** -(year * 12))
-}
-
-
-export const handleMortgageDataChange=(amountBorrow:number,interest:number,yearPay:number,monthlyRate:number)=>{
+export const handleLoanDataChange=(amountBorrow:number,interest:number,yearPay:number,monthlyRate:number)=>{
     //Set initial values for loop to calculate monthly figures
     let monthDataObject = [{
         month: 0,
@@ -40,7 +35,7 @@ export const handleMortgageDataChange=(amountBorrow:number,interest:number,yearP
         //loan left to pay
         outstandingBalance = outstandingBalance -monthPrincipalPaid
 
-        //There's always around £10 left at the end which forces the fraph to go into minus. This just rounds the last figure off at £0.00.
+        //There's always around $10 left at the end which forces the graph to go into minus. This just rounds the last figure off at $0.00.
         if(i === yearPay) {
             outstandingBalance = 0;
         }
