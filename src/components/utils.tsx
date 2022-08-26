@@ -26,6 +26,7 @@ export const handleLoanDataChange=(amountBorrow:number,
 
     //Loop each year of the mortgage term
     for(let i = 1; i <= yearPay; i++) {
+        let u = 0
 
         // inflation by month decreasing
         inflationCoefficient = inflationCoefficient*(1+inflationMonthlyRate)
