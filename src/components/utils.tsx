@@ -12,7 +12,8 @@ export const handleLoanDataChange=(amountBorrow:number,
         principalRepaid: 0,
         principalRepaidToDate: 0,
         outstandingBalanceInflation:0,
-        inflationByMonth:0
+        inflationByMonth:0,
+        amountBorrow:0
     }];
     let outstandingBalance = amountBorrow;
     let interestPaidToDate = 0;
@@ -69,8 +70,11 @@ export const handleLoanDataChange=(amountBorrow:number,
             principalRepaid: parseFloat(monthPrincipalPaid.toFixed(2)),
             principalRepaidToDate: parseFloat(principalRepaidToDate.toFixed(2)),
             outstandingBalanceInflation: parseFloat(outstandingBanalceInflation.toFixed(2)),
-            inflationByMonth:parseFloat(inflationByMonth.toFixed(2))
+            inflationByMonth:parseFloat(inflationByMonth.toFixed(2)),
+            amountBorrow:amountBorrow
         });
     }
     return monthDataObject
+
+
 }

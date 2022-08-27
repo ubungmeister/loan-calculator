@@ -38,6 +38,16 @@ export const CalculatorInput = (props:PropsType) => {
 
                         />
                         <label  className='Label_GridItemLabel'>Amount to borrow</label>
+                        <span className="Span_GridItemHeader">{props.showYearToPay} Years</span>
+                        <input value={Math.max(0, props.showYearToPay)}
+                               className="Input_GridItemRangeSlider"
+                               type='range'
+                               min="5"
+                               max="35"
+                               step="1"
+                               onChange={(e)=>props.yearPay(+e.currentTarget.value)}
+                        />
+                        <label  className='Label_GridItemLabel'>Loan term</label>
                     </div>
                     <div className="Div_GridItem">
                         <span className="Span_GridItemHeader">{props.showInterest}%</span>
@@ -52,38 +62,24 @@ export const CalculatorInput = (props:PropsType) => {
                         <label
                             className='Label_GridItemLabel'
                             htmlFor="points">Interest rate</label>
-                    </div>
-                    <div className="Div_GridItem">
-                        <span className="Span_GridItemHeader">{props.showYearToPay} Years</span>
-                        <input value={Math.max(0, props.showYearToPay)}
+                        <span className="Span_GridItemHeader">{props.showInflationInterest}%</span>
+                        <input value={Math.max(0, props.showInflationInterest)}
                                className="Input_GridItemRangeSlider"
                                type='range'
-                               min="5"
-                               max="35"
-                               step="1"
-                               onChange={(e)=>props.yearPay(+e.currentTarget.value)}
+                               min='0.1'
+                               max='20'
+                               step='0.1'
+                               onChange={(e)=>props.inflationInterest(+e.currentTarget.value)}
                         />
-                        <label  className='Label_GridItemLabel'>Loan term</label>
+                        <label
+                            className='Label_GridItemLabel'
+                            htmlFor="points">Inflation rate</label>
                     </div>
-                <div className="Div_GridItem">
-                    <span className="Span_GridItemHeader">{props.showInflationInterest}%</span>
-                    <input value={Math.max(0, props.showInflationInterest)}
-                           className="Input_GridItemRangeSlider"
-                           type='range'
-                           min='0.1'
-                           max='20'
-                           step='0.1'
-                           onChange={(e)=>props.inflationInterest(+e.currentTarget.value)}
-                    />
-                    <label
-                        className='Label_GridItemLabel'
-                        htmlFor="points">Inflation rate</label>
-                </div>
-                    <div className="Div_GridItem2">
-                        <span className="Span_GridItemHeader">
-                            {isFinite(props.monthlyRate) ? formatCurrency(props.monthlyRate) : '0'}</span>
-                        <label className='Label_GridItemLabel' id='label'>Monthly Payment:</label>
-                    </div>
+                    {/*<div className="Div_GridItem2">*/}
+                    {/*    <span className="Span_GridItemHeader">*/}
+                    {/*        {isFinite(props.monthlyRate) ? formatCurrency(props.monthlyRate) : '0'}</span>*/}
+                    {/*    <label className='Label_GridItemLabel' id='label'>Monthly Payment:</label>*/}
+                    {/*</div>*/}
                 </div>
 
 

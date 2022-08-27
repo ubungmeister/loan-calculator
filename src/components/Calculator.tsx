@@ -37,7 +37,10 @@ export const Calculator = () => {
 
             />
             <div >
-                <Graph calculatedMortgage={dataCalculateMortgage}/>
+                <Graph calculatedMortgage={dataCalculateMortgage}
+                       showAmountBorrow={amountBorrow}
+                       monthlyRate={monthlyRate}
+                />
                 <PaymentTable monthlyPayments={dataCalculateMortgage}/>
             </div>
         </div>
