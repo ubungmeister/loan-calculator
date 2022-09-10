@@ -5,12 +5,12 @@ import {Calculator} from "./components/Calculator";
 
 function App() {
 
-  return (
-    <div className='Div_Global'>
+    return (
+        <div className='Div_Global'>
 
-    <Calculator/>
-    </div>
-  );
+            <Calculator/>
+        </div>
+    );
 }
 
 export default App;

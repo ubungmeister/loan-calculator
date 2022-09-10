@@ -13,18 +13,17 @@ export const Calculator = () => {
 
 
     //monthly annual interest
-    const monthlyRate = ((interest / 100 / 12) * amountBorrow) / (1 - (Math.pow((1 + (interest / 100 / 12)),((0 - yearPay) * 12))))
+    const monthlyRate = ((interest / 100 / 12) * amountBorrow) / (1 - (Math.pow((1 + (interest / 100 / 12)), ((0 - yearPay) * 12))))
     //monthly inflation
-    const inflationMonthlyRate = (1 + (- (inflationInterest/100)))**(1/12) - 1
+    const inflationMonthlyRate = (1 + (-(inflationInterest / 100))) ** (1 / 12) - 1
     // data for table and graph
-    const dataCalculateMortgage = handleLoanDataChange(amountBorrow,interest,yearPay,monthlyRate,inflationMonthlyRate)
+    const dataCalculateMortgage = handleLoanDataChange(amountBorrow, interest, yearPay, monthlyRate, inflationMonthlyRate)
 
 
     return (
 
-        <div >
-            <header>  <h1>Loan calculator</h1></header>
-
+        <div>
+            <div className='Div_Start'>Loan calculator</div>
             <CalculatorInput amountBorrow={setStateAmount}
                              yearPay={setStateMonth}
                              interest={setStateMortgage}
@@ -36,7 +35,7 @@ export const Calculator = () => {
                              showInflationInterest={inflationInterest}
 
             />
-            <div >
+            <div>
                 <Graph calculatedMortgage={dataCalculateMortgage}
                        showAmountBorrow={amountBorrow}
                        monthlyRate={monthlyRate}

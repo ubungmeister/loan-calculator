@@ -1,7 +1,16 @@
 h1 {
   text-align: center;
-  font-family: 'Georgia';
-
+}
+.Div_Start{
+  font-size: 40px;
+  line-height: 56px;
+}
+.Div_Panel{
+  width: 400px;
+  height: 100px;
+  padding: 60px;
+  line-height: 24px;
+  box-sizing: content-box;
 }
 .Div_Global{
   margin-top: 15px;
@@ -15,8 +24,7 @@ h1 {
 .Div_GridContainer{
   display: grid;
   grid-template-columns: 50% 50%;
-  padding-bottom: 2rem;
-  padding-top: 2rem;
+  padding-top: 1rem;
 
 }
 .Div_GridItem{
@@ -26,13 +34,9 @@ h1 {
   text-align: center;
 }
 .Div_GridItem2{
-  padding: 40px;
-  padding-top: 20px;
   display: flex;
   flex-direction: column;
   text-align: center;
-  border: 3px solid;
-  margin: auto;
   border-radius: 20px;
   border-color: #82ca9d;
   width: 200px;
@@ -42,10 +46,15 @@ h1 {
 .Span_GridItemHeader{
   font-weight: bold;
   font-size: 1.2em;
-  margin-bottom: 10px;
+  margin-top: 10px;
+}
+.Span_DisplayedIteam{
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-top: 10px;
 }
 .Input_GridItemRangeSlider{
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 
 }
 .Label_GridItemLabel{
@@ -53,8 +62,14 @@ h1 {
 }
 .graphContainer {
   width: 100%;
-  max-width: 600px;
+  max-height: 600px;
+  max-width: 1000px;
   margin: 10px;
+
+}
+.pieContainer {
+  display: flex;
+  padding-left: 50px;
 
 }
 .paymentsCalculatorTable {
@@ -77,7 +92,7 @@ h1 {
   padding: 10px 5px;
 }
 .paymentsCalculatorTable tr:nth-of-type(even) {
-  background-color: rgba(0,0,0,.05);
+  background-color: #E4E9F1;
 }
 @media (min-width: 575px) {
   .to-date-yearly-payment {
@@ -86,4 +101,19 @@ h1 {
   .paymentsCalculatorTable td {
     width: 12.5%;
   }
+}
+.ul_Style{
+  list-style:'none';
+
+}
+.li_Style{
+  display: flex;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  margin: 10px;
+}
+.result_Style{
+  color: rgb(22, 33, 54);
+  font-size: 22px;
+  font-weight: lighter;
 }
