@@ -17,7 +17,7 @@ export const Calculator = () => {
     //monthly inflation
     const inflationMonthlyRate = (1 + (-(inflationInterest / 100))) ** (1 / 12) - 1
     // data for table and graph
-    const dataCalculateMortgage = handleLoanDataChange(amountBorrow, interest, yearPay, monthlyRate, inflationMonthlyRate)
+    const dataCalculateMortgage = handleLoanDataChange(amountBorrow, interest, yearPay, monthlyRate, inflationMonthlyRate,inflationInterest)
 
 
     return (

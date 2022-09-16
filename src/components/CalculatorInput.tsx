@@ -65,8 +65,8 @@ export const CalculatorInput = (props: PropsType) => {
                 <input value={Math.max(0, props.showInflationInterest)}
                        className="Input_GridItemRangeSlider"
                        type='range'
-                       min='0.1'
-                       max='20'
+                           min='0.1'
+                           max='20'
                        step='0.1'
                        onChange={(e) => props.inflationInterest(+e.currentTarget.value)}
                 />

@@ -2,7 +2,8 @@ export const handleLoanDataChange = (amountBorrow: number,
                                      interest: number,
                                      yearPay: number,
                                      monthlyRate: number,
-                                     inflationMonthlyRate: number) => {
+                                     inflationMonthlyRate: number,
+                                     inflationInterest:number,) => {
     //Set initial values for loop to calculate monthly figures
     let monthDataObject = [{
         month: 0,
@@ -13,7 +14,8 @@ export const handleLoanDataChange = (amountBorrow: number,
         principalRepaidToDate: 0,
         outstandingBalanceInflation: 0,
         inflationByMonth: 0,
-        amountBorrow: 0
+        amountBorrow: 0,
+        propertyValue:0
     }];
     let outstandingBalance = amountBorrow;
     let interestPaidToDate = 0;
@@ -21,13 +23,15 @@ export const handleLoanDataChange = (amountBorrow: number,
     let outstandingBanalceInflation = 0
     let inflationByMonth = 0
     let previousOutstandingBanalceInflation = amountBorrow
+    let propertyValue = amountBorrow
+
 
     let inflationCoefficient = 1
     yearPay = yearPay * 12
 
     //Loop each year of the mortgage term
     for (let i = 1; i <= yearPay; i++) {
-        let u = 0
+
 
         // inflation by month decreasing
         inflationCoefficient = inflationCoefficient * (1 + inflationMonthlyRate)
@@ -40,8 +44,8 @@ export const handleLoanDataChange = (amountBorrow: number,
         const getMonthInterestPaid = (interest: number, outstandingBalance: number) => {
             return outstandingBalance * interest / 100 / 12
         }
-
         let monthInterestPaid = getMonthInterestPaid(interest, outstandingBalance)
+
         //accumulative monthly interest paid
         interestPaidToDate = interestPaidToDate + monthInterestPaid;
 
@@ -55,6 +59,9 @@ export const handleLoanDataChange = (amountBorrow: number,
 
         //loan left to pay
         outstandingBalance = outstandingBalance - monthPrincipalPaid
+
+        //increased property value
+        propertyValue = propertyValue +(propertyValue*(inflationInterest/100/12))
 
         //There's always around $10 left at the end which forces the graph to go into minus. This just rounds the last figure off at $0.00.
         if (i === yearPay) {
@@ -70,7 +77,8 @@ export const handleLoanDataChange = (amountBorrow: number,
             principalRepaidToDate: parseFloat(principalRepaidToDate.toFixed(2)),
             outstandingBalanceInflation: parseFloat(outstandingBanalceInflation.toFixed(2)),
             inflationByMonth: parseFloat(inflationByMonth.toFixed(2)),
-            amountBorrow: amountBorrow
+            amountBorrow: amountBorrow,
+            propertyValue:propertyValue
         });
     }
     return monthDataObject

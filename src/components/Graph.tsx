@@ -21,6 +21,7 @@ export const Graph = (props: { calculatedMortgage: DataCalculateLoan } & PropsTy
         remain: formatDecimals(el.outstandingBalance),
         outstandingBalanceInflation: formatDecimals(el.outstandingBalanceInflation),
         inflationByMonth: formatDecimals(el.inflationByMonth),
+        propertyValue: formatDecimals(el.propertyValue)
 
     }))
     // extract amount of monthly interest paid and calculate the sum by using reducer
@@ -111,6 +112,14 @@ export const Graph = (props: { calculatedMortgage: DataCalculateLoan } & PropsTy
                         fill='#FFAD69'
                         stroke='#FFAD69'
                         name='Inflation'
+
+                    />
+                    <Line
+                        type='monotone'
+                        dataKey='propertyValue'
+                        fill= 'blue'
+                        stroke='blue'
+                        name='Property value affected by Inflation'
 
                     />
                 </LineChart>
