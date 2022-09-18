@@ -24,8 +24,8 @@ export const handleLoanDataChange = (amountBorrow: number,
     let inflationByMonth = 0
     let previousOutstandingBanalceInflation = amountBorrow
     let propertyValue = amountBorrow
-
-
+    let yearswss = yearPay
+    
     let inflationCoefficient = 1
     yearPay = yearPay * 12
 
@@ -38,7 +38,6 @@ export const handleLoanDataChange = (amountBorrow: number,
         outstandingBanalceInflation = amountBorrow * inflationCoefficient
         inflationByMonth = previousOutstandingBanalceInflation - outstandingBanalceInflation
         previousOutstandingBanalceInflation = outstandingBanalceInflation
-
 
         //monthly interest paid
         const getMonthInterestPaid = (interest: number, outstandingBalance: number) => {
