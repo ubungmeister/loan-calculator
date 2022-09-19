@@ -25,39 +25,32 @@ export const handleLoanDataChange = (amountBorrow: number,
     let previousOutstandingBanalceInflation = amountBorrow
     let propertyValue = amountBorrow
     let yearswss = yearPay
-    
+
     let inflationCoefficient = 1
     yearPay = yearPay * 12
 
     //Loop each year of the mortgage term
     for (let i = 1; i <= yearPay; i++) {
 
+        let monthInterestPaid = outstandingBalance * (interest / 100 / 12)
+        let monthPrincipalPaid = monthlyRate - monthInterestPaid
+        outstandingBalance = outstandingBalance - monthPrincipalPaid
 
         // inflation by month decreasing
+        outstandingBanalceInflation = outstandingBalance * inflationCoefficient
+        inflationByMonth = monthInterestPaid * inflationCoefficient
         inflationCoefficient = inflationCoefficient * (1 + inflationMonthlyRate)
-        outstandingBanalceInflation = amountBorrow * inflationCoefficient
-        inflationByMonth = previousOutstandingBanalceInflation - outstandingBanalceInflation
-        previousOutstandingBanalceInflation = outstandingBanalceInflation
 
-        //monthly interest paid
-        const getMonthInterestPaid = (interest: number, outstandingBalance: number) => {
-            return outstandingBalance * interest / 100 / 12
-        }
-        let monthInterestPaid = getMonthInterestPaid(interest, outstandingBalance)
+
 
         //accumulative monthly interest paid
         interestPaidToDate = interestPaidToDate + monthInterestPaid;
 
-        //monthly principal
-        const getMonthPrincipalPaid = (monthlyRate: number, monthInterestPaid: number) => {
-            return monthlyRate - monthInterestPaid
-        }
-        let monthPrincipalPaid = getMonthPrincipalPaid(monthlyRate, monthInterestPaid)
         //accumulative monthly principal
         principalRepaidToDate = principalRepaidToDate + monthPrincipalPaid
 
         //loan left to pay
-        outstandingBalance = outstandingBalance - monthPrincipalPaid
+        // outstandingBalance = outstandingBalance - monthPrincipalPaid
 
         //increased property value
         propertyValue = propertyValue +(propertyValue*(inflationInterest/100/12))
