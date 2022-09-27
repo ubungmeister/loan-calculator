@@ -1,18 +1,18 @@
 h1 {
   text-align: center;
 }
-.Div_Start{
+.DivStart{
   font-size: 40px;
   line-height: 56px;
 }
-.Div_Panel{
+.DivPanel{
   width: 400px;
   height: 100px;
   padding: 60px;
   line-height: 24px;
   box-sizing: content-box;
 }
-.Div_Global{
+.DivGlobal{
   margin-top: 15px;
   width: 100vw;
   height: 100vh;
@@ -21,19 +21,20 @@ h1 {
   font-family: 'Arial';
 
 }
-.Div_GridContainer{
+.DivGridContainer{
   display: grid;
   grid-template-columns: 50% 50%;
   padding-top: 1rem;
 
+
 }
-.Div_GridItem{
+.DivGridItem{
   padding: 30px;
   display: flex;
   flex-direction: column;
   text-align: center;
 }
-.Div_GridItem2{
+.DivGridItem2{
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -43,44 +44,44 @@ h1 {
   height: 100px;
 }
 
-.Span_GridItemHeader{
+.SpanGridItemHeader{
   font-weight: bold;
   font-size: 1.2em;
   margin-top: 10px;
 }
-.Span_DisplayedIteam{
+.SpanDisplayedIteam{
   font-weight: bold;
   font-size: 1.2em;
   margin-top: 10px;
 }
-.Input_GridItemRangeSlider{
+.InputGridItemRangeSlider{
   margin-bottom: 10px;
 
 }
-.Label_GridItemLabel{
+.LabelGridItemLabel{
   font-size: 14px;
 }
-.graphContainer {
+.GraphContainer {
   width: 100%;
   max-height: 600px;
   max-width: 1000px;
   margin: 10px;
 
 }
-.pieContainer {
+.PieContainer {
   display: flex;
   padding-left: 50px;
 
 }
-.paymentsCalculatorTable {
+.PaymentsCalculatorTable {
   width: 100%;
 
 }
-.paymentsCalculatorTable td {
+.PaymentsCalculatorTable td {
   width: 25%;
   text-align: center;
 }
-.paymentsCalculatorTable thead th {
+.PaymentsCalculatorTable thead th {
   position: initial;
   font-size: small;
   top: 0;
@@ -88,31 +89,31 @@ h1 {
   border: black;
 }
 
-.paymentsCalculatorTable td, .paymentsCalculatorTable th {
+.PaymentsCalculatorTable td, .PaymentsCalculatorTable th {
   padding: 10px 5px;
 }
-.paymentsCalculatorTable tr:nth-of-type(even) {
+.PaymentsCalculatorTable tr:nth-of-type(even) {
   background-color: #E4E9F1;
 }
 @media (min-width: 575px) {
-  .to-date-yearly-payment {
+  .To-date-yearly-payment {
     display: table-cell;
   }
-  .paymentsCalculatorTable td {
+  .PaymentsCalculatorTable td {
     width: 12.5%;
   }
 }
-.ul_Style{
+.UlStyle{
   list-style:'none';
 
 }
-.li_Style{
+.LiStyle{
   display: flex;
   -webkit-box-pack: justify;
   justify-content: space-between;
   margin: 10px;
 }
-.result_Style{
+.ResultStyle{
   color: rgb(22, 33, 54);
   font-size: 22px;
   font-weight: lighter;

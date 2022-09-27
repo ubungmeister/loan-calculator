@@ -23,7 +23,7 @@ export const Calculator = () => {
     return (
 
         <div>
-            <div className='Div_Start'>Loan calculator</div>
+            <div className='DivStart'>Loan calculator</div>
             <CalculatorInput amountBorrow={setStateAmount}
                              yearPay={setStateMonth}
                              interest={setStateMortgage}

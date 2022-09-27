@@ -3,7 +3,7 @@ import React from 'react';
 export const ResultsTable = () => {
     return (
         <div>
-            <table className="paymentsCalculatorTable">
+            <table className="PaymentsCalculatorTable">
                 <thead>
                 <th></th>
                 </thead>

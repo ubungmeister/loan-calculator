@@ -6,7 +6,7 @@ import {Calculator} from "./components/Calculator";
 function App() {
 
     return (
-        <div className='Div_Global'>
+        <div className='DivGlobal'>
 
             <Calculator/>
         </div>

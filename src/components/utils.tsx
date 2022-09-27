@@ -14,7 +14,6 @@ export const handleLoanDataChange = (amountBorrow: number,
         principalRepaidToDate: 0,
         outstandingBalanceInflation: 0,
         inflationByMonth: 0,
-        amountBorrow: 0,
         propertyValue:0
     }];
     let outstandingBalance = amountBorrow;
@@ -24,7 +23,6 @@ export const handleLoanDataChange = (amountBorrow: number,
     let inflationByMonth = 0
     let previousOutstandingBanalceInflation = amountBorrow
     let propertyValue = amountBorrow
-    let yearswss = yearPay
 
     let inflationCoefficient = 1
     yearPay = yearPay * 12
@@ -41,18 +39,13 @@ export const handleLoanDataChange = (amountBorrow: number,
         inflationByMonth = monthInterestPaid * inflationCoefficient
         inflationCoefficient = inflationCoefficient * (1 + inflationMonthlyRate)
 
-
-
         //accumulative monthly interest paid
         interestPaidToDate = interestPaidToDate + monthInterestPaid;
 
         //accumulative monthly principal
         principalRepaidToDate = principalRepaidToDate + monthPrincipalPaid
 
-        //loan left to pay
-        // outstandingBalance = outstandingBalance - monthPrincipalPaid
-
-        //increased property value
+        //increased property value tell us how would possibly increase borrowed amount in case we buy a property on this money
         propertyValue = propertyValue +(propertyValue*(inflationInterest/100/12))
 
         //There's always around $10 left at the end which forces the graph to go into minus. This just rounds the last figure off at $0.00.
@@ -69,7 +62,6 @@ export const handleLoanDataChange = (amountBorrow: number,
             principalRepaidToDate: parseFloat(principalRepaidToDate.toFixed(2)),
             outstandingBalanceInflation: parseFloat(outstandingBanalceInflation.toFixed(2)),
             inflationByMonth: parseFloat(inflationByMonth.toFixed(2)),
-            amountBorrow: amountBorrow,
             propertyValue:propertyValue
         });
     }

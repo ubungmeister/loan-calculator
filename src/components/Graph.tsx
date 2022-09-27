@@ -38,28 +38,27 @@ export const Graph = (props: { calculatedMortgage: DataCalculateLoan } & PropsTy
 
 
     return (
-        <div className='Div_GridContainer'>
-            <div className='Span_DisplayedIteam'>
-                <div className='Div_Panel'>
-                    <ul className='ul_Style'>
-                        <li className='li_Style'>
-                            <span className='result_Style'> Monthly Payment:</span>
+        <div className='DivGridContainer'>
+            <div className='SpanDisplayedIteam'>
+                <div className='DivPanel'>
+                    <ul className='UlStyle'>
+                        <li className='LiStyle'>
+                            <span className='ResultStyle'> Monthly Payment:</span>
                             <span
-                                className='result_Style'>{isFinite(props.monthlyRate) ? formatCurrency(props.monthlyRate) : '0'}</span>
+                                className='ResultStyle'>{isFinite(props.monthlyRate) ? formatCurrency(props.monthlyRate) : '0'}</span>
                         </li>
 
-                        <li className='li_Style'>
-                            <span className='result_Style'>Total Principal Paid:</span>
-                            <span className='result_Style'>
-                    {formatCurrency(sumPrincipalTotlaPaid)}</span>
+                        <li className='LiStyle'>
+                            <span className='ResultStyle'>Total Principal Paid:</span>
+                            <span className='ResultStyle'>{formatCurrency(sumPrincipalTotlaPaid)}</span>
                         </li>
-                        <li className='li_Style'>
-                            <span className='result_Style'>Total Amount Paid:</span>
-                            <span className='result_Style'>{formatCurrency(totalAmountPaid)}</span></li>
+                        <li className='LiStyle'>
+                            <span className='ResultStyle'>Total Amount Paid:</span>
+                            <span className='ResultStyle'>{formatCurrency(totalAmountPaid)}</span></li>
                     </ul>
                 </div>
             </div>
-            <div className='pieContainer'>
+            <div className='PieContainer'>
                 <PieChart
                     width={500}
                     height={300}>
@@ -80,7 +79,7 @@ export const Graph = (props: { calculatedMortgage: DataCalculateLoan } & PropsTy
                     </Pie>
                 </PieChart>
             </div>
-            <div className='graphContainer'>
+            <div className='GraphContainer'>
                 <LineChart
                     width={600}
                     height={300}
@@ -117,14 +116,14 @@ export const Graph = (props: { calculatedMortgage: DataCalculateLoan } & PropsTy
                     <Line
                         type='monotone'
                         dataKey='propertyValue'
-                        fill= 'blue'
+                        fill='blue'
                         stroke='blue'
                         name='Property value affected by Inflation'
 
                     />
                 </LineChart>
             </div>
-            <div className='graphContainer'>
+            <div className='GraphContainer'>
                 <LineChart
                     width={600}
                     height={300}

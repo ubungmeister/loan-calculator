@@ -5,16 +5,16 @@ import {formatCurrency} from "./CalculatorInput";
 type DataCalculateLoan = ReturnType<typeof handleLoanDataChange>
 export const PaymentTable = (props: { monthlyPayments: DataCalculateLoan }) => {
     return(
-        <table className="paymentsCalculatorTable">
+        <table className="PaymentsCalculatorTable">
             <thead>
             <tr>
-                <th>Year</th>
+                <th>Month</th>
                 <th>Month Interest Paid</th>
-                <th className="toDateYearlyPayment">Total Interest Paid</th>
+                <th className="ToDateYearlyPayment">Total Interest Paid</th>
                 <th>Month Principal Paid</th>
-                <th className="toDateYearlyPayment">Total Principal Repaid</th>
+                <th className="ToDateYearlyPayment">Total Principal Repaid</th>
                 <th>Loan Balance</th>
-                <th className="toDateYearlyPayment">Inflation by month</th>
+                <th className="ToDateYearlyPayment">Inflation by month</th>
                 <th>Inflation by month</th>
 
             </tr>
