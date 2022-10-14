@@ -1,7 +1,8 @@
 import React from 'react';
-import {CartesianGrid, Legend, Line, LineChart, Tooltip, XAxis, YAxis, PieChart, Pie, Cell} from "recharts";
+import {CartesianGrid, Legend, Line, LineChart, Tooltip, XAxis, YAxis, PieChart, Pie, Cell, LabelList} from "recharts";
 import {handleLoanDataChange} from "./utils";
 import {formatCurrency} from "./CalculatorInput";
+import styled from "styled-components";
 
 const formatDecimals = (item: number) => {
     return Number(item.toFixed(2))
@@ -12,9 +13,10 @@ type PropsType = {
     monthlyRate: number
 }
 
+
 type DataCalculateLoan = ReturnType<typeof handleLoanDataChange>
-export const Graph = (props: { calculatedMortgage: DataCalculateLoan } & PropsType) => {
-    const chartData = props.calculatedMortgage.filter(el => el.month).map((el, index) => ({
+export const Graph = (props: { calculatedLoan: DataCalculateLoan } & PropsType) => {
+    const chartData = props.calculatedLoan.filter(el => el.month).map((el, index) => ({
         xAxis: {index},
         interestPaid: formatDecimals(el.interestPaid),
         principalPaid: formatDecimals(el.principalRepaid),
@@ -25,61 +27,63 @@ export const Graph = (props: { calculatedMortgage: DataCalculateLoan } & PropsTy
 
     }))
     // extract amount of monthly interest paid and calculate the sum by using reducer
-    const sumPrincipalTotlaPaid = props.calculatedMortgage.map(el => el.interestPaid).reduce((accumulator, value) => {
+    const sumPrincipalTotlaPaid = props.calculatedLoan.map(el => el.interestPaid).reduce((accumulator, value) => {
         return accumulator + value
     })
-    const sumPrincipalAmountPaid = props.calculatedMortgage.map(el => el.principalRepaid).reduce((accumulator, value) => {
+    const sumPrincipalAmountPaid = props.calculatedLoan.map(el => el.principalRepaid).reduce((accumulator, value) => {
         return accumulator + value
     })
     const totalAmountPaid = sumPrincipalTotlaPaid + sumPrincipalAmountPaid
-    const data = [{name: 'Total Principal Paid', value: sumPrincipalTotlaPaid},
+    const datas = [{name: 'Total Principal Paid', value: sumPrincipalTotlaPaid},
         {name: 'Borrowed Amount', value: props.showAmountBorrow},]
     const COLORS = ["#47A8BD", "#1E3888"]
 
 
     return (
-        <div className='DivGridContainer'>
-            <div className='SpanDisplayedIteam'>
-                <div className='DivPanel'>
-                    <ul className='UlStyle'>
-                        <li className='LiStyle'>
-                            <span className='ResultStyle'> Monthly Payment:</span>
-                            <span
-                                className='ResultStyle'>{isFinite(props.monthlyRate) ? formatCurrency(props.monthlyRate) : '0'}</span>
-                        </li>
+        <Container>
+            <ItemWrapper>
+                <PanelWrapper>
+                    <UlWrapper>
+                        <LiWrapper>
+                            <SpanWrapper> Monthly Payment:</SpanWrapper>
+                            <SpanWrapper>{isFinite(props.monthlyRate) ? formatCurrency(props.monthlyRate) : '0'}</SpanWrapper>
+                        </LiWrapper>
 
-                        <li className='LiStyle'>
-                            <span className='ResultStyle'>Total Principal Paid:</span>
-                            <span className='ResultStyle'>{formatCurrency(sumPrincipalTotlaPaid)}</span>
-                        </li>
-                        <li className='LiStyle'>
-                            <span className='ResultStyle'>Total Amount Paid:</span>
-                            <span className='ResultStyle'>{formatCurrency(totalAmountPaid)}</span></li>
-                    </ul>
-                </div>
-            </div>
-            <div className='PieContainer'>
+                        <LiWrapper>
+                            <SpanWrapper>Total Principal Paid:</SpanWrapper>
+                            <SpanWrapper>{formatCurrency(sumPrincipalTotlaPaid)}</SpanWrapper>
+                        </LiWrapper>
+                        <LiWrapper>
+                            <SpanWrapper>Total Amount Paid:</SpanWrapper>
+                            <SpanWrapper>{formatCurrency(totalAmountPaid)}</SpanWrapper></LiWrapper>
+                    </UlWrapper>
+                </PanelWrapper>
+            </ItemWrapper>
+            <PieWrapper>
                 <PieChart
                     width={500}
                     height={300}>
                     <Pie
-                        data={data}
+                        data={datas}
                         cx="50%"
                         cy="50%"
-                        innerRadius={80}
+                        innerRadius={50}
                         outerRadius={90}
                         fill="#8884d8"
                         paddingAngle={5}
                         dataKey="value"
                         label={(entry) => entry.name}
                     >
-                        {data.map((entry, index) => (
-                            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} fontSize={15}/>
+                        {datas.map((entry, index) => (
+                            <Cell
+                                key={`cell-${index}`}
+                                fill={COLORS[index % COLORS.length]}
+                                fontSize={15}/>
                         ))}
                     </Pie>
                 </PieChart>
-            </div>
-            <div className='GraphContainer'>
+            </PieWrapper>
+            <GraphWrapper>
                 <LineChart
                     width={600}
                     height={300}
@@ -122,8 +126,8 @@ export const Graph = (props: { calculatedMortgage: DataCalculateLoan } & PropsTy
 
                     />
                 </LineChart>
-            </div>
-            <div className='GraphContainer'>
+            </GraphWrapper>
+            <GraphWrapper>
                 <LineChart
                     width={600}
                     height={300}
@@ -167,9 +171,54 @@ export const Graph = (props: { calculatedMortgage: DataCalculateLoan } & PropsTy
                     />
                 </LineChart>
 
-            </div>
-        </div>
+            </GraphWrapper>
+        </Container>
 
     );
 };
 
+const UlWrapper = styled.ul`
+  border: solid #E4E9F1;
+  opacity: 0.8;
+  padding-left: 5px;
+  border-radius: 5px;
+  box-shadow: 5px 5px 10px 0 rgb(228, 233, 241)
+`
+
+const Container = styled.div`
+  display: grid;
+  grid-template-columns: 50% 50%;
+  padding: 10px 50px
+`
+const ItemWrapper =styled.div`
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-top: 10px;
+`
+const PanelWrapper =styled.div`
+  width: 400px;
+  height: 100px;
+  padding: 60px;
+  line-height: 24px;
+  box-sizing: content-box;
+`
+const LiWrapper = styled.li`
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+`
+const SpanWrapper = styled.span`
+  color: rgb(22, 33, 54);
+  font-size: 22px;
+  font-weight: lighter;
+`
+const PieWrapper =styled.div`
+  display: flex;
+  padding-left: 50px;
+`
+const GraphWrapper =styled.div`
+  width: 100%;
+  max-height: 600px;
+  max-width: 1000px;
+  margin: 10px;
+`
